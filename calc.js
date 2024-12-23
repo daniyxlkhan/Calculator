@@ -5,6 +5,7 @@ let o;
 const display = document.querySelector("#display");
 const content = document.createElement("div");
 
+content.classList.add("display");
 let isSecondOperand = false;
 
 const buttons = document.querySelectorAll(".btn");
@@ -14,14 +15,15 @@ buttons.forEach((btn) => {
 
         if (!isNaN(value)) { // Check if it's a digit
             if (!isSecondOperand) {
-                a = parseInt(value);
+                a = (a || '') + value; // Build `a` as a string
+                a = parseInt(a);
                 isSecondOperand = true;
-
-                console.log(a);
+                // console.log(a);
             } else {
+                b = (b || '') + value;
                 b = parseInt(value);
-                
-                console.log(b);
+                isSecondOperand = false;
+                // console.log(b);
             }
         } else if (value === "=") {
             const result = operate(a, o, b);
@@ -29,8 +31,7 @@ buttons.forEach((btn) => {
             a = result; // Keep result for next calculation
             b = null;
             o = '';
-            isSecondOperand = false;
-        } else if (value === "Clear") {
+        } else if (value === "AC") {
             content.textContent = '';
             a = null;
             b = null;
@@ -38,7 +39,7 @@ buttons.forEach((btn) => {
             isSecondOperand = false;
         } else {
             o = value;
-            console.log(o);
+            // console.log(o);
         }
         content.textContent = `${a || ''} ${o || ''} ${b || ''}`;
     });
@@ -49,9 +50,6 @@ display.appendChild(content);
 
 
 function operate (a, o , b){
-    // console.log("A value: " + a);
-    // console.log("O value: " + o);
-    // console.log("B value: " + b);
     if (o === '+') {
         return addition(a, b);
     } else if (o === '-') {
