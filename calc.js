@@ -6,6 +6,7 @@ const display = document.querySelector("#display");
 const content = document.createElement("div");
 
 content.classList.add("display");
+content.textContent = "0";
 let isSecondOperand = false;
 
 const buttons = document.querySelectorAll(".btn");
@@ -41,7 +42,7 @@ buttons.forEach((btn) => {
             o = value;
             // console.log(o);
         }
-        content.textContent = `${a || ''} ${o || ''} ${b || ''}`;
+        content.textContent = `${a || '0'} ${o || ''} ${b || ''}`;
     });
 });
 
