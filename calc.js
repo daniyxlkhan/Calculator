@@ -1,6 +1,6 @@
-let a;
-let b;
-let o;
+let a = '';
+let b = '';
+let o = '';;
 
 const display = document.querySelector("#display");
 const content = document.createElement("div");
@@ -14,35 +14,37 @@ buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
         const value = btn.textContent;
 
-        if (!isNaN(value)) { // Check if it's a digit
+        if (!isNaN(value) || value === '.') { // Digit pressed
             if (!isSecondOperand) {
-                a = (a || '') + value; // Build `a` as a string
-                a = parseInt(a);
-                isSecondOperand = true;
-                // console.log(a);
+                if (value === '.' && a.includes('.')) return;
+                a += value; // Append digits to `a`
+                content.textContent = a;
             } else {
-                b = (b || '') + value;
-                b = parseInt(value);
-                isSecondOperand = false;
-                // console.log(b);
+                if (value === '.' && b.includes('.')) return;
+                b += value; // Append digits to `b`
+                content.textContent = b;
             }
         } else if (value === "=") {
-            const result = operate(a, o, b);
-            content.textContent = result;
-            a = result; // Keep result for next calculation
-            b = null;
-            o = '';
+            if (a && b && o) {
+                const result = operate(parseFloat(a), o, parseFloat(b));
+                content.textContent = result;
+                a = result.toString();
+                b = '';
+                o = '';
+                isSecondOperand = false;
+            }
         } else if (value === "AC") {
-            content.textContent = '';
-            a = null;
-            b = null;
+            a = '';
+            b = '';
             o = '';
             isSecondOperand = false;
-        } else {
-            o = value;
-            // console.log(o);
+            content.textContent = '0';
+        } else { // Operator pressed
+            if (a) {
+                o = value;
+                isSecondOperand = true;
+            }
         }
-        content.textContent = `${a || '0'} ${o || ''} ${b || ''}`;
     });
 });
 
