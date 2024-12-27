@@ -1,11 +1,11 @@
 let a = '';
 let b = '';
-let o = '';;
+let o = '';
 
 const display = document.querySelector("#display");
 const content = document.createElement("div");
 
-content.classList.add("display");
+content.classList.add("content");
 content.textContent = "0";
 let isSecondOperand = false;
 
