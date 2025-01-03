@@ -24,7 +24,7 @@ buttons.forEach((btn) => {
                 b += value; // Append digits to `b`
                 content.textContent = b;
             }
-        } else if (value === "=") {
+        } else if (value === "=") { // compute the result
             if (a && b && o) {
                 const result = operate(parseFloat(a), o, parseFloat(b));
                 content.textContent = result;
@@ -33,7 +33,7 @@ buttons.forEach((btn) => {
                 o = '';
                 isSecondOperand = false;
             }
-        } else if (value === "AC") {
+        } else if (value === "AC") { // reset the display
             a = '';
             b = '';
             o = '';
