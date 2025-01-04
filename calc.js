@@ -28,7 +28,7 @@ buttons.forEach((btn) => {
             if (a && b && o) {
                 const result = operate(parseFloat(a), o, parseFloat(b));
                 content.textContent = result;
-                a = result.toString();
+                a = result;
                 b = '';
                 o = '';
                 isSecondOperand = false;
@@ -40,7 +40,7 @@ buttons.forEach((btn) => {
             isSecondOperand = false;
             content.textContent = '0';
         } else { // Operator pressed
-            if (a) {
+            if (a) { // let the operator be used only if the first operand has been given
                 o = value;
                 isSecondOperand = true;
             }
@@ -50,17 +50,18 @@ buttons.forEach((btn) => {
 
 display.appendChild(content);
 
-
-
 function operate (a, o , b){
-    if (o === '+') {
-        return addition(a, b);
-    } else if (o === '-') {
-        return subtract(a, b);
-    } else if (o === '/') {
-        return divide(a, b);
-    } else if (o === '*') {
-        return multiply(a, b);
+    switch (o) {
+        case '+':
+            return addition(a, b);
+        case '−':
+            return subtract(a,b);
+        case '÷':
+            return divide(a, b);
+        case '×':
+            return multiply(a, b);
+        default:
+            return NaN;
     }
 }
 
