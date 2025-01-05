@@ -1,3 +1,9 @@
+:root {
+    --top-row: #a5a5a5;
+    --operator: #f8a40c;
+    --btn:  #333333;
+}
+
 html, body {
     margin: 0;
     padding: 0;
@@ -38,7 +44,7 @@ html, body {
     font-size: 28px;
     border: none;
     color: white;
-    background-color: #333333;
+    background-color: var(--btn);
 }
 
 .btn:active {
@@ -46,7 +52,7 @@ html, body {
 }
 
 .operator {
-    background-color: #f8a40c;
+    background-color: var(--operator);
     font-size: 40px;
 }
 
@@ -55,7 +61,7 @@ html, body {
 }
 
 .top-row {
-    background-color: #a5a5a5;
+    background-color: var(--top-row);
     color: black;
 }
 
