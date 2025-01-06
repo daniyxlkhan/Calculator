@@ -69,7 +69,7 @@ html, body {
     background-color: rgba(165, 165, 165, 0.75);
 }
 
-.zero {
+.zero { /* Different styles for zero button on calculator */
     grid-column: span 2;
     text-align: start;
     border-radius: 50px;
